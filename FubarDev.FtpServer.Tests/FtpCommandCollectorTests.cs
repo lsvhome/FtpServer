@@ -1,5 +1,12 @@
-﻿using System;
+﻿using FubarDev.FtpServer.AccountManagement;
+using FubarDev.FtpServer.AccountManagement.Anonymous;
+using FubarDev.FtpServer.AuthTls;
+using FubarDev.FtpServer.FileSystem.DotNet;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 using Xunit;
@@ -182,6 +189,90 @@ namespace FubarDev.FtpServer.Tests
                 commands,
                 new FtpCommandComparer());
             Assert.True(collector.IsEmpty);
+        }
+
+        [Fact]
+        public void TestStartStopServer()
+        {
+            string ip = "127.0.0.1";
+            int port = 2023;
+            string serverPath = string.Format("ftp://{0}:{1}/testfile.txt", ip, port);
+
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(serverPath);
+
+            request.KeepAlive = true;
+            request.UsePassive = true;
+            request.UseBinary = true;
+
+            request.Credentials = new NetworkCredential("anonymous", "johnDoe@test.com");
+
+            //request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Method = WebRequestMethods.Ftp.ListDirectory;
+            //request.Credentials = new NetworkCredential(username, password);
+
+
+
+            
+            // Load server certificate
+            //var cert = new X509Certificate2("..\TestFtpServer\test.pfx");
+            //AuthTlsCommandHandler.ServerCertificate = cert;
+
+            // Only allow anonymous login
+            var membershipProvider = new AnonymousMembershipProvider(new NoValidation());
+
+            // Use the .NET file system
+            var fsProvider = new DotNetFileSystemProvider(Path.Combine(Path.GetTempPath(), "TestFtpServer"));
+
+            // Use all commands from the FtpServer assembly and the one(s) from the AuthTls assembly
+            var commandFactory = new AssemblyFtpCommandHandlerFactory(typeof(FtpServer).Assembly, typeof(AuthTlsCommandHandler).Assembly);
+
+            // Initialize the FTP server
+            //using (
+            var ftpServer = new FtpServer(fsProvider, membershipProvider, ip, port, commandFactory)
+            {
+                DefaultEncoding = Encoding.ASCII,
+            };//)
+            {
+
+                // Start the FTP server
+                ftpServer.Start();
+                Console.WriteLine("Please wait for 10 sec.");
+                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
+                //System.Net.FtpWebRequest.Create()
+                {
+
+                    // Read the file from the server & write to destination                
+                    using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                    {
+                        using (Stream responseStream = response.GetResponseStream())
+                        {
+                            using (StreamReader reader = new StreamReader(responseStream))
+                            {
+                                var ret = reader.ReadToEnd();
+                                Console.WriteLine(ret);
+                                System.Diagnostics.Debug.WriteLine(ret);
+                                //using (StreamWriter destination = new StreamWriter(new MemoryStream()))
+                                //{
+                                //    destination.Write(reader.ReadToEnd());
+                                //    destination.Flush();
+                                //}
+
+
+
+                                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
+
+                                // Stop the FTP server while client is connected
+                                ftpServer.Stop();
+                                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(20));
+                                ftpServer.Dispose();
+                                ftpServer = null;
+                            }
+                        }
+                    }
+                }
+
+
+            }
         }
 
         private IEnumerable<FtpCommand> Collect(FtpCommandCollector collector, string data)
