@@ -38,15 +38,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <HintPath>C:\Data\Temp\prj9\encfs-dotnet-git\source\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sockets.Plugin, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\rda.SocketsForPCL.1.2.2\lib\net45\Sockets.Plugin.dll</HintPath>
+      <HintPath>C:\Data\Temp\prj9\encfs-dotnet-git\source\packages\rda.SocketsForPCL.1.2.2\lib\net45\Sockets.Plugin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sockets.Plugin.Abstractions, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\rda.SocketsForPCL.1.2.2\lib\net45\Sockets.Plugin.Abstractions.dll</HintPath>
+      <HintPath>C:\Data\Temp\prj9\encfs-dotnet-git\source\packages\rda.SocketsForPCL.1.2.2\lib\net45\Sockets.Plugin.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -93,9 +93,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="C:\Data\Temp\prj9\encfs-dotnet-git\source\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
+    <Analyzer Include="C:\Data\Temp\prj9\encfs-dotnet-git\source\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="C:\Data\Temp\prj9\encfs-dotnet-git\source\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
