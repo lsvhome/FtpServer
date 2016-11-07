@@ -168,6 +168,12 @@ namespace FubarDev.FtpServer
 
         private BackgroundTransferWorker BackgroundTransferWorker { get; }
 
+        private static object startedLock = new object();
+
+        public bool Started { get { lock (startedLock) { return started1; } } set { lock (startedLock) { started1 = value; } } }
+
+        private volatile bool started1 = false;
+
         /// <summary>
         /// The Stopped property. Mutexed so it can be accessed concurrently by different threads.
         /// </summary>
@@ -276,7 +282,8 @@ namespace FubarDev.FtpServer
                         e.Reset();
                         listener.StartListeningAsync(Port).Wait();
                         _log?.Debug("Server listening on port {0}", Port);
-
+                        Started = true;
+                        _log?.Debug("Server listening on port {0}", Port);
                         try
                         {
                             // If we are already stoped, don't wait.

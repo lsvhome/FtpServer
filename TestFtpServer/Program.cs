@@ -12,6 +12,7 @@ using FubarDev.FtpServer.AuthTls;
 using FubarDev.FtpServer.FileSystem.DotNet;
 
 using TestFtpServer.Logging;
+using System.Threading;
 
 namespace TestFtpServer
 {
@@ -20,7 +21,7 @@ namespace TestFtpServer
 #if USE_FTPS_IMPLICIT
         const int Port = 990;
 #else
-        const int Port = 21;
+        const int Port = 2023;
 #endif
 
         private static void Main()
@@ -38,6 +39,8 @@ namespace TestFtpServer
             // Use all commands from the FtpServer assembly and the one(s) from the AuthTls assembly
             var commandFactory = new AssemblyFtpCommandHandlerFactory(typeof(FtpServer).Assembly, typeof(AuthTlsCommandHandler).Assembly);
 
+            AutoResetEvent thread1Step = new AutoResetEvent(false);
+            System.Threading.ThreadPool.QueueUserWorkItem((x)=> { 
             // Initialize the FTP server
             using (var ftpServer = new FtpServer(fsProvider, membershipProvider, "127.0.0.1", Port, commandFactory)
             {
@@ -62,9 +65,9 @@ namespace TestFtpServer
                 {
                     // Start the FTP server
                     ftpServer.Start();
-                    Console.WriteLine("Press ENTER/RETURN to close the test application.");
-                    Console.ReadLine();
 
+
+                    thread1Step.WaitOne();
                     // Stop the FTP server
                     ftpServer.Stop();
                 }
@@ -73,6 +76,14 @@ namespace TestFtpServer
                     log?.Error(ex, "Error during main FTP server loop");
                 }
             }
+
+            });
+
+            Console.WriteLine("Press ENTER/RETURN to close the test application.");
+            Console.ReadLine();
+            thread1Step.Set();
+            System.Threading.Thread.Sleep(15000);
+
         }
     }
 }
