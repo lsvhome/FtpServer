@@ -302,6 +302,12 @@ namespace FubarDev.FtpServer
             });
         }
 
+        private static object startedLock = new object();
+
+        public bool Started { get { lock (startedLock) { return started1; } } set { lock (startedLock) { started1 = value; } } }
+
+        private volatile bool started1 = false;
+
         private void ConnectionReceived(object sender, TcpSocketListenerConnectEventArgs args)
         {
             var connection = new FtpConnection(this, args.SocketClient, DefaultEncoding);

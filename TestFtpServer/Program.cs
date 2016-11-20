@@ -38,6 +38,8 @@ namespace TestFtpServer
             // Use all commands from the FtpServer assembly and the one(s) from the AuthTls assembly
             var commandFactory = new AssemblyFtpCommandHandlerFactory(typeof(FtpServer).Assembly, typeof(AuthTlsCommandHandler).Assembly);
 
+            System.Threading.AutoResetEvent thread1Step = new System.Threading.AutoResetEvent(false);
+            System.Threading.ThreadPool.QueueUserWorkItem((arg)=> {
             // Initialize the FTP server
             using (var ftpServer = new FtpServer(fsProvider, membershipProvider, "127.0.0.1", Port, commandFactory)
             {
@@ -62,8 +64,8 @@ namespace TestFtpServer
                 {
                     // Start the FTP server
                     ftpServer.Start();
-                    Console.WriteLine("Press ENTER/RETURN to close the test application.");
-                    Console.ReadLine();
+
+                    thread1Step.WaitOne();
 
                     // Stop the FTP server
                     ftpServer.Stop();
@@ -73,6 +75,14 @@ namespace TestFtpServer
                     log?.Error(ex, "Error during main FTP server loop");
                 }
             }
+
+            });
+
+            Console.WriteLine("Press ENTER/RETURN to close the test application.");
+            Console.ReadLine();
+            thread1Step.Set();
+            System.Threading.Thread.Sleep(15000);
+
         }
     }
 }
