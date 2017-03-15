@@ -45,7 +45,16 @@ namespace FubarDev.FtpServer.CommandHandlers
                 Connection.Data.User = validationResult.User;
                 Connection.Data.IsLoggedIn = true;
                 Connection.Data.IsAnonymous = isAnonymous;
-                Connection.Data.FileSystem = await Server.FileSystemClassFactory.Create(userId, isAnonymous);
+                try
+                {
+                    Connection.Data.FileSystem = await Server.FileSystemClassFactory.Create(userId, isAnonymous);
+                }
+                catch (System.Exception ex)
+                {
+                    System.Diagnostics.Debug.Assert(false, ex.ToString());
+                    return new FtpResponse(530, "Internal error");
+                }
+
                 Connection.Data.Path = new Stack<IUnixDirectoryEntry>();
                 return new FtpResponse(230, "Password ok, FTP server ready");
             }
