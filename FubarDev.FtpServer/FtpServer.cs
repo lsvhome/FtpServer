@@ -170,8 +170,6 @@ namespace FubarDev.FtpServer
         [CanBeNull]
         public IFtpLogManager LogManager { get; set; }
 
-        private BackgroundTransferWorker BackgroundTransferWorker { get; }
-
         public bool Ready
         {
             get
@@ -211,6 +209,8 @@ namespace FubarDev.FtpServer
                 }
             }
         }
+
+        private BackgroundTransferWorker BackgroundTransferWorker { get; }
 
         /// <summary>
         /// Starts the FTP server in the background
