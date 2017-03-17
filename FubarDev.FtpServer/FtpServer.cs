@@ -31,6 +31,8 @@ namespace FubarDev.FtpServer
     /// </summary>
     public sealed class FtpServer : IDisposable
     {
+        private static object startedLock = new object();
+
         /// <summary>
         /// Mutext for Stopped field.
         /// </summary>
@@ -48,6 +50,8 @@ namespace FubarDev.FtpServer
         private ConfiguredTaskAwaitable _listenerTask;
 
         private AutoResetEvent _listenerTaskEvent = new AutoResetEvent(false);
+
+        private volatile bool _isReady = false;
 
         private IFtpLog _log;
 
@@ -168,11 +172,24 @@ namespace FubarDev.FtpServer
 
         private BackgroundTransferWorker BackgroundTransferWorker { get; }
 
-        private static object startedLock = new object();
+        public bool Ready
+        {
+            get
+            {
+                lock (startedLock)
+                {
+                    return _isReady;
+                }
+            }
 
-        public bool Started { get { lock (startedLock) { return started1; } } set { lock (startedLock) { started1 = value; } } }
-
-        private volatile bool started1 = false;
+            set
+            {
+                lock (startedLock)
+                {
+                    _isReady = value;
+                }
+            }
+        }
 
         /// <summary>
         /// The Stopped property. Mutexed so it can be accessed concurrently by different threads.
@@ -282,7 +299,7 @@ namespace FubarDev.FtpServer
                         e.Reset();
                         listener.StartListeningAsync(Port).Wait();
                         _log?.Debug("Server listening on port {0}", Port);
-                        Started = true;
+                        Ready = true;
                         _log?.Debug("Server listening on port {0}", Port);
                         try
                         {
