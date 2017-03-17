@@ -234,6 +234,8 @@ namespace FubarDev.FtpServer
             }
         }
 
+        private BackgroundTransferWorker BackgroundTransferWorker { get; }
+
         /// <summary>
         /// Starts the FTP server in the background
         /// </summary>
