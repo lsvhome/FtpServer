@@ -194,11 +194,24 @@ namespace FubarDev.FtpServer
 
         private BackgroundTransferWorker BackgroundTransferWorker { get; }
 
-        private static object startedLock = new object();
+        public bool Ready
+        {
+            get
+            {
+                lock (startedLock)
+                {
+                    return _isReady;
+                }
+            }
 
-        public bool Started { get { lock (startedLock) { return started1; } } set { lock (startedLock) { started1 = value; } } }
-
-        private volatile bool started1 = false;
+            set
+            {
+                lock (startedLock)
+                {
+                    _isReady = value;
+                }
+            }
+        }
 
         /// <summary>
         /// The Stopped property. Mutexed so it can be accessed concurrently by different threads.
@@ -309,7 +322,7 @@ namespace FubarDev.FtpServer
                         listener.StartListeningAsync(Port).Wait();
                         Ready = true;
                         _log?.Debug("Server listening on port {0}", Port);
-                        Started = true;
+                        Ready = true;
                         _log?.Debug("Server listening on port {0}", Port);
                         try
                         {
