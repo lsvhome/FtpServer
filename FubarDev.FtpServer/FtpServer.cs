@@ -293,7 +293,7 @@ namespace FubarDev.FtpServer
                 _log = LogManager?.CreateLog(typeof(FtpServer));
                 using (var listener = new TcpSocketListener(0))
                 {
-                    listener.ConnectionReceived = ConnectionReceived;
+                    listener.ConnectionReceived += ConnectionReceived;
                     try
                     {
                         e.Reset();
