@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Minimatch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=0cadeb0b849c27c0, processorArchitecture=MSIL">
-      <HintPath>C:\Data\Temp\prj9\encfs-dotnet-git\source\packages\FubarDev.Minimatch.1.2.0\lib\portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Minimatch.dll</HintPath>
+      <HintPath>..\..\..\source\packages\FubarDev.Minimatch.1.2.0\lib\portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Minimatch.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
@@ -67,7 +67,6 @@
     <None Include="App.config" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
     </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
