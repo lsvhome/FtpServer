@@ -194,25 +194,6 @@ namespace FubarDev.FtpServer
 
         private BackgroundTransferWorker BackgroundTransferWorker { get; }
 
-        public bool Ready
-        {
-            get
-            {
-                lock (startedLock)
-                {
-                    return _isReady;
-                }
-            }
-
-            set
-            {
-                lock (startedLock)
-                {
-                    _isReady = value;
-                }
-            }
-        }
-
         /// <summary>
         /// The Stopped property. Mutexed so it can be accessed concurrently by different threads.
         /// </summary>
@@ -233,8 +214,6 @@ namespace FubarDev.FtpServer
                 }
             }
         }
-
-        private BackgroundTransferWorker BackgroundTransferWorker { get; }
 
         /// <summary>
         /// Starts the FTP server in the background
