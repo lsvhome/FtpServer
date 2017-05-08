@@ -298,9 +298,9 @@ namespace FubarDev.FtpServer
                     {
                         e.Reset();
                         listener.StartListeningAsync(Port).Wait();
-                        _log?.Debug("Server listening on port {0}", Port);
                         Ready = true;
                         _log?.Debug("Server listening on port {0}", Port);
+
                         try
                         {
                             // If we are already stoped, don't wait.

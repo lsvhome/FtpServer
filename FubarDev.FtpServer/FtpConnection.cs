@@ -370,7 +370,6 @@ namespace FubarDev.FtpServer
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.Assert(false, ex.ToString());
                         Log?.Error(ex, "Failed to process message ({0})", command);
                         response = new FtpResponse(501, "Syntax error in parameters or arguments.");
                     }
