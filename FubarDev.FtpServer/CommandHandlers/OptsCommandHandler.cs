@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace FubarDev.FtpServer.CommandHandlers
             : base(connection, "OPTS")
         {
             Extensions = new Dictionary<string, FtpCommandHandlerExtension>(StringComparer.OrdinalIgnoreCase);
+            Extensions.Add("UTF8", new GenericFtpCommandHandlerExtension(Connection, "OPTS", "UTF8", ProcessOptionUtf8, "UTF-8"));
         }
 
         /// <inheritdoc/>
@@ -36,13 +38,13 @@ namespace FubarDev.FtpServer.CommandHandlers
         /// <inheritdoc/>
         public override IEnumerable<IFeatureInfo> GetSupportedFeatures()
         {
-            yield return new GenericFeatureInfo("UTF8", "UTF-8");
+            return Extensions.Select(ext => new GenericFeatureInfo(ext.Key, string.Join(" ", ext.Value.Names.Where(name => name != ext.Key))));
         }
 
         /// <inheritdoc/>
         public override IEnumerable<FtpCommandHandlerExtension> GetExtensions()
         {
-            yield return new GenericFtpCommandHandlerExtension(Connection, "OPTS", "UTF8", ProcessOptionUtf8, "UTF-8");
+            return Extensions.Values;
         }
 
         /// <inheritdoc/>
