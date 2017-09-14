@@ -76,7 +76,6 @@
       <Link>stylecop.json</Link>
     </AdditionalFiles>
     <None Include="FubarDev.FtpServer.AuthTls.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubarDev.FtpServer.AccountManagement\FubarDev.FtpServer.AccountManagement.csproj">

@@ -45,9 +45,6 @@
     </AdditionalFiles>
     <None Include="app.config" />
     <None Include="FubarDev.FtpServer.FileSystem.GoogleDrive.nuspec" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">

@@ -92,7 +92,6 @@
     </AdditionalFiles>
     <None Include="app.config" />
     <None Include="FubarDev.FtpServer.FileSystem.OneDrive.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubarDev.FtpServer.FileSystem\FubarDev.FtpServer.FileSystem.csproj">

@@ -64,9 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FubarDev.FtpServer\FubarDev.FtpServer.csproj">
       <Project>{01ebbf94-7469-43a0-a618-07fb734b163f}</Project>
       <Name>FubarDev.FtpServer</Name>

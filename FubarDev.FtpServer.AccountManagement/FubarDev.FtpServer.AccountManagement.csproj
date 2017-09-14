@@ -46,7 +46,6 @@
       <Link>stylecop.json</Link>
     </AdditionalFiles>
     <None Include="FubarDev.FtpServer.AccountManagement.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">

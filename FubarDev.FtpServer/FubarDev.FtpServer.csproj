@@ -172,7 +172,6 @@
       <Link>stylecop.json</Link>
     </AdditionalFiles>
     <None Include="FubarDev.FtpServer.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\source\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
