@@ -65,20 +65,15 @@
       <HintPath>..\..\..\source\packages\Portable.BouncyCastle-Signed.1.7.0.2\lib\portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10\crypto.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\..\..\source\packages\JetBrains.Annotations.10.4.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\JetBrains.Annotations.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.2</Version>
+    </PackageReference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\source\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp.Portable.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
       <HintPath>..\..\..\source\packages\FubarCoder.RestSharp.Portable.Core.3.3.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\RestSharp.Portable.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp.Portable.Google.Drive, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\source\packages\RestSharp.Portable.Google.Drive.0.7.0\lib\portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\RestSharp.Portable.Google.Drive.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp.Portable.OAuth, Version=3.3.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
@@ -89,6 +84,12 @@
       <HintPath>..\..\..\source\packages\FubarCoder.RestSharp.Portable.OAuth2.3.1.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\RestSharp.Portable.OAuth2.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <PackageReference Include="JetBrains.Annotations">
+      <Version>10.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp.Portable.Google.Drive">
+      <Version>0.7.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubarDev.FtpServer.FileSystem\FubarDev.FtpServer.FileSystem.csproj">
@@ -109,4 +110,34 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <PackageReference Include="FubarCoder.RestSharp.Portable.Core">
+      <Version>3.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FubarCoder.RestSharp.Portable.OAuth">
+      <Version>3.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FubarCoder.RestSharp.Portable.OAuth2">
+      <Version>3.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Portable.BouncyCastle-Signed">
+      <Version>1.7.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Runtime">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
 </Project>
