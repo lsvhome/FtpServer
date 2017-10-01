@@ -264,35 +264,24 @@ namespace FubarDev.FtpServer
         /// <inheritdoc/>
         public void Dispose()
         {
-            _log?.Debug("FtpServer Dispose() begin");
             if (!Stopped)
             {
                 Stop();
             }
 
-            _log?.Debug("FtpServer Dispose() stage 01");
             try
             {
                 _listenerTask.GetAwaiter().GetResult();
-                _log?.Debug("FtpServer Dispose() stage 02");
             }
             catch (TaskCanceledException)
             {
-                _log?.Debug("FtpServer Dispose() stage 03");
                 // Ignorieren - alles ist OK
             }
 
-            _log?.Debug("FtpServer Dispose() stage 04");
-
             BackgroundTransferWorker.Dispose();
-
-            _log?.Debug("FtpServer Dispose() stage 05");
             _cancellationTokenSource.Dispose();
-            _log?.Debug("FtpServer Dispose() stage 06");
             _listenerTaskEvent.Dispose();
-            _log?.Debug("FtpServer Dispose() stage 07");
             _connections.Dispose();
-            _log?.Debug("FtpServer Dispose() end");
         }
 
         private void OnConfigureConnection(FtpConnection connection)
