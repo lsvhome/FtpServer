@@ -97,20 +97,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NLog">
-      <Version>4.4.9</Version>
+      <Version>5.0.0-beta11</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NLog.Config">
-      <Version>4.4.9</Version>
+      <Version>4.5.0-beta02</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="NLog.Schema">
-      <Version>4.4.9</Version>
+      <Version>4.5.0-beta02</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="rda.SocketsForPCL">
       <Version>1.2.2</Version>
     </PackageReference>
