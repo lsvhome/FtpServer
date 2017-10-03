@@ -9,12 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FubarDev.Minimatch" Version="1.2.0" />
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
-    <PackageReference Include="rda.SocketsForPCL" Version="1.2.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Minimatch\Minimatch\Minimatch.csproj" />
+    <ProjectReference Include="..\..\sockets-for-pcl\Sockets\Sockets.Plugin.Abstractions\Sockets.Plugin.Abstractions.csproj" />
+    <ProjectReference Include="..\..\sockets-for-pcl\Sockets\Sockets.Plugin\Sockets.Plugin.csproj" />
     <ProjectReference Include="..\FubarDev.FtpServer.AccountManagement\FubarDev.FtpServer.AccountManagement.csproj" />
     <ProjectReference Include="..\FubarDev.FtpServer.FileSystem.DotNet\FubarDev.FtpServer.FileSystem.DotNet.csproj" />
     <ProjectReference Include="..\FubarDev.FtpServer.FileSystem\FubarDev.FtpServer.FileSystem.csproj" />
