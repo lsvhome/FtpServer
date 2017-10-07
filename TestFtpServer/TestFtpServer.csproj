@@ -65,10 +65,6 @@
       <Project>{488c390f-fa49-4625-8fca-1e37794512cc}</Project>
       <Name>Sockets.Plugin.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\sockets-for-pcl\Sockets\Sockets.Plugin\Sockets.Plugin.csproj">
-      <Project>{cecfb914-f990-4cee-8ec8-e56a86ef2597}</Project>
-      <Name>Sockets.Plugin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FubarDev.FtpServer.AccountManagement\FubarDev.FtpServer.AccountManagement.csproj">
       <Project>{2530aefe-ce85-444e-9868-58be478aefd1}</Project>
       <Name>FubarDev.FtpServer.AccountManagement</Name>
